@@ -81,6 +81,6 @@ function App() {
     </div>
   );
 }
-//git ignore
+//git ignore 변경사항 commit test
 
 export default App;
