@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import DiaryEditer from "./component/DiaryEditer";
 import DiaryList from "./component/DiaryList";
@@ -41,6 +41,23 @@ function App() {
   const dataId = useRef(0);
   //변수처럼 사용하는 useReference
 
+  const getData = async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts").then(
+      (res) => res.json()
+    );
+    const initData = res.slice(0, 20).map((it) => {
+      return {
+        author: it.title,
+        content: it.body,
+        created_date: new Date().getTime(),
+        id: dataId.current++,
+      };
+    });
+    setData(initData);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   const onCreate = (author, content, excersise) => {
     //일기데이터를 추가하는 함수
     const created_date = new Date().getTime();
