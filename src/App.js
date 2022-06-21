@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import DiaryEditer from "./component/DiaryEditer";
 import DiaryList from "./component/DiaryList";
+import OptimizeTest from "./component/OptimizeTest";
+import OptimizeTest2 from "./component/OptimizeTest2";
 import Lifecycle from "./Lifecycle";
 import Lifecycle2 from "./Lifecycle2";
 
@@ -93,10 +95,14 @@ function App() {
   // 어떤 id 인지 , 어떤걸로 content를 변경할것인지.
   // 매개변수로 전달받은 id와 target id 가 일치하게 되면 (해당원소는 1개뿐이다) > 수정대상
 
+  //useMemo
+
   return (
     <div className="App">
-      <Lifecycle2 />
-      <Lifecycle />
+      <OptimizeTest2 />
+      <OptimizeTest />
+      {/* <Lifecycle2 />
+      <Lifecycle /> */}
       <DiaryEditer onCreate={onCreate} />
       <DiaryList diaryList={data} onRemove={onRemove} onEdit={onEdit} />
     </div>
