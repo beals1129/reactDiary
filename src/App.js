@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./App.css";
 import DiaryEditer from "./component/DiaryEditer";
 import DiaryList from "./component/DiaryList";
@@ -60,7 +60,7 @@ function App() {
   useEffect(() => {
     getData();
   }, []);
-  const onCreate = (author, content, excersise) => {
+  const onCreate = useCallback((author, content, excersise) => {
     //일기데이터를 추가하는 함수
     const created_date = new Date().getTime();
     const newItem = {
@@ -74,7 +74,8 @@ function App() {
     // 다음아이템은 0이아닌 1이어야하니까
     setData([newItem, ...data]);
     // newItem 이 뒤에있다면 뒤로 쌓이는 것이고 앞에있다면 앞으로 쌓임
-  };
+  }, []);
+  //useCallback으로 DiaryEditrer 리랜더링 안되게 만들기
 
   const onRemove = (targetId) => {
     console.log(`${targetId}가 삭제되었습니다.`);
